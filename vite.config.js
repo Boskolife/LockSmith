@@ -14,9 +14,6 @@ export default defineConfig({
   base: '/LockSmith',
   root: 'src',
   publicDir: '../public',
-  define: {
-    global: 'globalThis',
-  },
   plugins: [
     handlebars({
       partialDirectory: resolve(__dirname, 'src/templates'),
@@ -40,16 +37,7 @@ export default defineConfig({
         speed: 4,
       },
       svgo: {
-        plugins: [
-          {
-            name: 'removeViewBox',
-            active: false,
-          },
-          {
-            name: 'removeEmptyAttrs',
-            active: false,
-          },
-        ],
+        plugins: [],
       },
     }),
   ],
@@ -60,12 +48,6 @@ export default defineConfig({
     outDir: '../dist/',
     emptyOutDir: true,
     minify: true,
-    cssCodeSplit: false,
-  },
-  css: {
-    postcss: {
-      plugins: [],
-    },
   },
   server: {
     port: 3000,
