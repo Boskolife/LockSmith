@@ -1,0 +1,188 @@
+@use '../base/variables'as *;
+@use '../base/mixins'as *;
+@use '../base/adaptive'as *;
+@use '../vendors/include-media'as *;
+
+// Input groups
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+// Labels
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-weight: $font-weight-medium;
+    color: $neutrals-800;
+    font-size: 14px;
+    line-height: $text-s-line-height;
+}
+
+// Input fields
+input,
+textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: $radius-xs;
+    border: $border-width-l solid $blue-brand-100;
+    font-size: 14px;
+    line-height: $text-s-line-height;
+    color: $neutrals-800;
+    font-weight: $font-weight-medium;
+    background-color: $neutrals-100;
+    transition: $animation-speed;
+    outline: none;
+
+    &:focus {
+        border-color: $blue-brand-500;
+    }
+
+    &:not(:focus):hover {
+        border-color: $blue-brand-200;
+    }
+
+    @include placeholder {
+        color: $neutrals-700;
+    }
+}
+
+
+// Textarea specific
+textarea {
+    min-height: 120px;
+    height: 100%;
+    resize: vertical;
+    font-family: inherit;
+}
+
+// Custom Select Styles
+.custom-select {
+    position: relative;
+    width: 100%;
+
+    .select-trigger {
+        width: 100%;
+        padding: 11px;
+        border-radius: $radius-xs;
+        border: $border-width-l solid $blue-brand-100;
+        font-size: 14px;
+        line-height: $text-s-line-height;
+        color: $neutrals-800;
+        font-weight: $font-weight-medium;
+        transition: $animation-speed;
+        background-color: $neutrals-100;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+
+        &:hover {
+            transition: $animation-speed;
+            border-color: $blue-brand-200;
+            outline: none;
+        }
+
+        &.active {
+            border-color: $blue-brand-900;
+            outline: none;
+        }
+
+        .select-value {
+            color: $neutrals-700;
+
+            &.placeholder {
+                color: $neutrals-700;
+            }
+        }
+
+        .select-arrow {
+            transition: $animation-speed;
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &.active .select-trigger .select-arrow {
+        transform: rotate(180deg);
+    }
+
+    .select-options {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        background-color: $neutrals-100;
+        border-radius: $radius-s;
+        z-index: 1000;
+        overflow-y: auto;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: $animation-speed;
+        text-align: start;
+
+        &.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+    }
+
+    .select-option {
+        padding: 12px;
+        cursor: pointer;
+        transition: $animation-speed;
+        color: $neutrals-800;
+        font-size: 14px;
+        line-height: $text-s-line-height;
+        font-weight: $font-weight-medium;
+
+        &:hover,
+        &.hover {
+            background-color: $blue-brand-100;
+            color: $blue-brand-900;
+        }
+
+        &:active {
+            background-color: $blue-brand-500;
+            color: $neutrals-100;
+        }
+
+        &.selected {
+            background-color: $blue-brand-200;
+            color: $blue-brand-900;
+        }
+    }
+}
+
+// Hidden native select
+.is-hidden {
+    display: none !important;
+}
+
+// Form messages
+.form-error,
+.form-success {
+    padding: 12px;
+    border-radius: $radius-xs;
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: $font-weight-medium;
+}
+
+.form-error {
+    background-color: rgba($system-red-500, 0.1);
+    color: $system-red-700;
+    border: 1px solid $system-red-300;
+}
+
+.form-success {
+    background-color: rgba($yellow-brand-500, 0.1);
+    color: $yellow-brand-700;
+    border: 1px solid $yellow-brand-300;
+}

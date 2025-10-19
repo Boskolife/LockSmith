@@ -1,0 +1,116 @@
+@use '../vendors/include-media'as *;
+@use '../base/variables'as *;
+@use '../base/adaptive'as *;
+@use '../base/mixins'as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+
+  &_info-banner {
+    background-color: $white;
+    padding: 12px 0;
+    text-align: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+
+    p {
+      @include adaptive-value("font-size", 18, 14, 1);
+      color: $blue;
+      font-weight: $font-weight-medium;
+      line-height: $text-m-line-height;
+      letter-spacing: $text-m-letter-spacing;
+      text-transform: uppercase;
+    }
+  }
+
+  // Scrolled state
+  &--scrolled {
+    background-color: rgba($blue-brand-500, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba($neutrals-900, 0.1);
+  }
+
+  // Hidden state (scroll down)
+  &--hidden {
+    transform: translateY(-100%);
+  }
+
+  &_nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 18px 0;
+  }
+
+  &_logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    &-img {
+      width: 50px;
+      height: 50px;
+
+      @include media ("<tablet") {
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    &-text {
+      max-width: 277px;
+      width: 100%;
+
+      @include media ("<tablet") {
+        display: none;
+      }
+    }
+  }
+
+  &_menu {
+    display: flex;
+    align-items: center;
+    @include adaptive-value("column-gap", 40, 18, 1);
+  }
+
+  &_link {
+    @include adaptive-value("font-size", 16, 14, 1);
+    color: $white;
+    font-weight: $font-weight-medium;
+    line-height: $text-m-line-height;
+    letter-spacing: $text-m-letter-spacing;
+  }
+
+
+  &_phone {
+
+    @include media ("<desktop") {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      min-width: auto;
+      padding: 0;
+    }
+
+    .phone-icon {
+      display: none;
+      width: 24px;
+      height: 24px;
+
+      @include media ("<desktop") {
+        display: block;
+      }
+    }
+
+    .phone-number {
+      @include media ("<desktop") {
+        display: none;
+      }
+    }
+  }
+}

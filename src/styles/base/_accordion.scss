@@ -1,0 +1,54 @@
+@use '../base/variables'as *;
+@use '../base/adaptive'as *;
+@use '../base/mixins'as *;
+
+.js-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    &-item {
+        width: 100%;
+
+        &._active {
+            .accordion-toggler-icon {
+                rotate: 90deg;
+                transition: $animation-speed;
+            }
+        }
+    }
+
+    &-toggler {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        width: 100%;
+        padding: 0 0 16px 0;
+        border: none;
+        border-bottom: $border-width-l solid $neutrals-100;
+        color: $neutrals-100;
+        background-color: transparent;
+
+        @include adaptive-value("font-size", 20, 16, 1);
+        line-height: $text-m-line-height;
+        font-weight: $font-weight-medium;
+    }
+
+    .accordion-toggler-icon {
+        width: 24px;
+        height: 24px;
+        transition: $animation-speed;
+    }
+
+    &-content {
+        display: none;
+        padding-top: 12px;
+
+        p {
+            @include adaptive-value("font-size", 18, 16, 1);
+            font-weight: $font-weight-medium;
+            line-height: $text-l-line-height;
+        }
+    }
+}

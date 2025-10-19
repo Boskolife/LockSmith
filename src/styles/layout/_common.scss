@@ -1,0 +1,46 @@
+@use '../vendors/include-media'as *;
+@use '../base/variables'as *;
+@use '../base/adaptive'as *;
+
+html {
+
+    // Webkit scrollbar styles (Chrome, Safari, Edge)
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: $blue-brand-500;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: $blue-brand-600;
+        }
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: $neutrals-500;
+    }
+
+    // Firefox scrollbar styles
+    scrollbar-width: thin;
+    scrollbar-color: $blue-brand-500 $neutrals-500;
+}
+
+.container {
+    max-width: 1310px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+
+.yellow-text {
+    color: $yellow;
+}
+
+.default-section {
+    @include adaptive-value("padding-top", 92, 56, 1);
+    @include adaptive-value("padding-bottom", 92, 56, 1);
+}

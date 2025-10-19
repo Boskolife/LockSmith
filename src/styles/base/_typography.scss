@@ -1,0 +1,119 @@
+@use 'variables'as *;
+@use 'mixins'as *;
+@use 'adaptive'as *;
+@use '../vendors/include-media'as *;
+
+// Typography System - Inter Display
+
+// Base typography styles
+body {
+    font-family: $base-font-family;
+    font-size: $text-m-size;
+    font-weight: $font-weight-regular;
+    line-height: $text-m-line-height;
+    letter-spacing: $text-m-letter-spacing;
+    color: $base-text-color;
+}
+
+// Heading styles
+h1,
+.h1,
+.heading-xl {
+    font-size: $heading-xl-size;
+    font-weight: $font-weight-medium;
+    line-height: $heading-xl-line-height;
+    letter-spacing: $heading-xl-letter-spacing;
+    margin: 0;
+    color: $headings-color;
+}
+
+h2,
+.h2,
+.heading-l {
+    font-size: $heading-l-size;
+    font-weight: $font-weight-medium;
+    line-height: $heading-l-line-height;
+    letter-spacing: $heading-l-letter-spacing;
+    margin: 0;
+    color: $headings-color;
+}
+
+h3,
+.h3,
+.heading-m {
+    font-size: $heading-m-size;
+    font-weight: $font-weight-medium;
+    line-height: $heading-m-line-height;
+    letter-spacing: $heading-m-letter-spacing;
+    margin: 0;
+    color: $headings-color;
+}
+
+h4,
+.h4,
+.heading-s {
+    font-size: $heading-s-size;
+    font-weight: $font-weight-medium;
+    line-height: $heading-s-line-height;
+    letter-spacing: $heading-s-letter-spacing;
+    margin: 0;
+    color: $headings-color;
+}
+
+h5,
+.h5,
+.heading-xs {
+    font-size: $heading-xs-size;
+    font-weight: $font-weight-medium;
+    line-height: $heading-xs-line-height;
+    letter-spacing: $heading-xs-letter-spacing;
+    margin: 0;
+    color: $headings-color;
+}
+
+h6,
+.h6 {
+    font-size: $h6-font-size;
+    font-weight: $font-weight-medium;
+    margin: 0;
+    color: $headings-color;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    color: $base-link-color;
+    text-decoration: none;
+    transition: color .3s ease;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+        list-style: none;
+    }
+}
+
+.section-title {
+    @include font-size-with-precise-spacing(48px, 1.1, -2%);
+    @include adaptive-value("font-size", 48, 28, 1);
+    color: $blue-brand-500;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    @include adaptive-value("margin-bottom", 52, 32, 1);
+
+    @include media ("<tablet") {
+        max-width: 305px;
+    }
+}

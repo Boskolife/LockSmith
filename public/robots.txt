@@ -1,0 +1,29 @@
+# Robots.txt - запрет индексации для всех поисковых роботов
+User-agent: *
+Disallow: /
+
+# Дополнительные инструкции для основных поисковых систем
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+# Запрет доступа к служебным файлам
+Disallow: /.git/
+Disallow: /node_modules/
+Disallow: /.cursor/
+Disallow: /dist/
+Disallow: /src/

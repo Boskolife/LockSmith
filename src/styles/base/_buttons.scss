@@ -1,0 +1,136 @@
+@use '../base/variables'as *;
+@use '../base/mixins'as *;
+@use '../base/adaptive'as *;
+@use '../vendors/include-media'as *;
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: $pill-radius;
+    padding: 16px;
+    min-width: 207px;
+    font-weight: 600;
+    transition: $animation-speed;
+    border: none;
+    outline: none;
+    margin: 0;
+    color: $blue;
+
+    &:hover {
+        transition: $animation-speed;
+    }
+
+    &_big {
+        font-size: 18px;
+        line-height: $text-l-line-height;
+    }
+
+    &_small {
+        font-size: 16px;
+        line-height: $text-m-line-height;
+    }
+
+    &_orange {
+        background-color: $orange;
+        color: $blue;
+
+        &:hover {
+            background-color: $orange-brand-300;
+        }
+    }
+
+    &_yellow {
+        background-color: $yellow;
+
+        &:hover {
+            background-color: $yellow-brand-300;
+        }
+    }
+}
+
+.request-btn {
+    border: $border-width-m solid $yellow;
+    border-radius: $radius-l;
+    background-color: $blue-brand-900;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 25px;
+    min-width: 144px;
+    max-width: 144px;
+    height: 144px;
+    transition: $animation-speed;
+
+    @include media ("<desktop") {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        flex-direction: row;
+        padding: 14px;
+    }
+
+    &-text {
+        font-size: 16px;
+        font-weight: $font-weight-semibold;
+        color: $neutrals-100;
+        line-height: $text-m-line-height;
+        transition: $animation-speed;
+    }
+
+    &-img {
+        width: 40px;
+        height: 40px;
+
+        @include media ("<desktop") {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &:hover {
+        transition: $animation-speed;
+        background-color: $blue-brand-700;
+
+        .request-btn-text {
+            color: $yellow;
+            transition: $animation-speed;
+        }
+    }
+}
+
+
+.swiper-button-prev,
+.swiper-button-next {
+    background-color: $blue-brand-500;
+    width: 60px !important;
+    height: 60px !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white;
+    transition: $animation-speed;
+    margin: 0 !important;
+
+    .swiper-navigation-icon {
+        display: none;
+    }
+
+    @include media ("<widescreen") {
+        position: static !important;
+    }
+
+    &:hover {
+        background-color: $blue-brand-900;
+        transition: $animation-speed;
+    }
+}
+
+.swiper-button-disabled {
+    opacity: 1 !important;
+    background-color: $neutrals-800;
+}

@@ -1,0 +1,83 @@
+name: Release / Реліз
+
+# Triggers / Тригери
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags / Тригер на теги версій
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code / Перевірка коду
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js / Налаштування Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies / Встановлення залежностей
+        run: npm ci
+        
+      - name: Run linting / Запуск лінтингу
+        run: npm run lint
+        
+      - name: Build project / Збірка проекту
+        run: npm run build
+        
+      - name: Create release archive / Створення архіву релізу
+        run: |
+          # Create archive with all necessary files / Створення архіву з необхідними файлами
+          tar -czf vite-landing-template-${{ github.ref_name }}.tar.gz \
+            dist/ \
+            docs/ \
+            README.md \
+            LICENSE \
+            package.json
+            
+      - name: Generate changelog for release / Генерація changelog для релізу
+        id: changelog
+        run: |
+          # Extract version from tag / Витягнення версії з тегу
+          VERSION=${GITHUB_REF#refs/tags/}
+          VERSION=${VERSION#v}
+          
+          # Extract changelog content for this version / Витягнення змісту changelog для цієї версії
+          CHANGELOG_CONTENT=$(awk "/## \[$VERSION\]/,/^## \[/{if(!/^## \[$VERSION\]/ && !/^## \[/){print}}" CHANGELOG.md)
+          
+          # Create release notes / Створення приміток релізу
+          echo "## What's New / Що нового" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "$CHANGELOG_CONTENT" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "## Installation / Встановлення" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "1. Download the archive / Завантажте архів" >> release_notes.md
+          echo "2. Extract files / Розпакуйте файли" >> release_notes.md
+          echo "3. Run \`npm install\` / Запустіть \`npm install\`" >> release_notes.md
+          echo "4. Run \`npm run dev\` / Запустіть \`npm run dev\`" >> release_notes.md
+          
+      - name: Create GitHub Release / Створення GitHub релізу
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Release ${{ github.ref_name }}
+          body_path: release_notes.md
+          draft: false
+          prerelease: ${{ contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc') }}
+          
+      - name: Upload Release Asset / Завантаження файлів релізу
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./vite-landing-template-${{ github.ref_name }}.tar.gz
+          asset_name: vite-landing-template-${{ github.ref_name }}.tar.gz
+          asset_content_type: application/gzip

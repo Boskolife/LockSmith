@@ -1,0 +1,27 @@
+// Import base variables first (needed for include-media)
+@use 'base/variables'as *;
+
+// Import vendors
+@use 'vendors/include-media'as *;
+@use 'vendors/normalize';
+
+// Import base styles
+@use 'base/functions'as *;
+@use 'base/mixins'as *;
+@use 'base/adaptive'as *;
+@use 'base/fonts'as *;
+@use 'base/helpers'as *;
+@use 'base/reset'as *;
+@use 'base/typography'as *;
+@use 'base/forms'as *;
+@use 'base/buttons'as *;
+@use 'base/links'as *;
+@use 'base/accordion'as *;
+// Import layout styles
+@use 'layout/header'as *;
+@use 'layout/common'as *;
+@use 'layout/main-page'as *;
+@use 'layout/footer'as *;
+
+// Import Swiper styles
+@use 'swiper/css/bundle'as *;

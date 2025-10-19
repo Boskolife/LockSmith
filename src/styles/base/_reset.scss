@@ -1,0 +1,44 @@
+@use 'variables'as *;
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+* {
+    max-height: 1000000px;
+}
+
+body {
+    color: $base-text-color;
+    background: $base-background-color;
+    font: #{$font-size-base}/#{$line-height-base} $base-font-family;
+    min-width: $base-min-width;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+	flex: 1 1 auto;
+}
+
+// adaptive images
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: top;
+}
+
+// google map fix
+.gm-style img {
+    max-width: none
+}

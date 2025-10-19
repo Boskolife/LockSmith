@@ -1,0 +1,425 @@
+{{> head }}
+
+<body>
+  {{> header }}
+  <main id="main">
+    <section class="hero">
+      <div class="overlay"></div>
+      <picture class="hero_bg">
+        <source srcset="./images/hero-bg-mob.png" media="(max-width: 768px)" type="image/png">
+        <img src="./images/hero-bg.png" alt="image not found" width="100%" height="100%">
+      </picture>
+      <div class="container">
+        <div class="hero_content">
+          <div class="hero_rating">
+            <img class="hero_rating-img" src="./images/cards.png" alt="image not found" width="100"
+              height="30">
+            <span class="hero_rating-text">4.9★ average rating </span>
+          </div>
+          <div class="hero_label">
+            <span class="hero_label-text">Over 10,000 locks repaired across GTA.</span>
+          </div>
+          <h1 class="hero_title">
+            Your Local Family Locksmith – <br>
+            <span class="yellow-text">15-Minute Response</span> in Toronto & GTA
+          </h1>
+          <button class="btn btn_big btn_yellow hero_btn">Call Now</button>
+          <div class="hero_footer">
+            <div class="hero_family-info">
+              <div class="hero_family-info-img">
+                <img src="./images/family-img.png" alt="image not found" width="100" height="100">
+              </div>
+              <p class="hero_family-info-text">
+                Family-owned, serving Toronto since 1976. We treat your home like our own.
+              </p>
+            </div>
+            <form action="#" class="hero_form">
+              <div class="input-group">
+                <label for="name">Your Name
+                  <input id="name" type="text" placeholder="Name">
+                </label>
+                <label for="phone">Phone Number
+                  <input id="phone" type="tel" placeholder="Phone">
+                </label>
+              </div>
+              <div class="input-group">
+                <label for="email">Location
+                  <input id="email" type="email" placeholder="Email">
+                </label>
+                <label for="service">Service
+                  <div class="custom-select" data-select>
+                    <div class="select-trigger" data-select-trigger>
+                      <span class="select-value" data-select-value>Select</span>
+                      <img src="./svg/arrow-down.svg" alt="arrow" width="10" height="10"
+                        class="select-arrow">
+                    </div>
+                    <div class="select-options" data-select-options>
+                      <div class="select-option" data-value="1">Service 1</div>
+                      <div class="select-option" data-value="2">Service 2</div>
+                      <div class="select-option" data-value="3">Service 3</div>
+                    </div>
+                    <select name="service" id="service" required class="is-hidden"
+                      aria-hidden="true">
+                      <option value="" disabled selected>Select</option>
+                      <option value="1">Service 1</option>
+                      <option value="2">Service 2</option>
+                      <option value="3">Service 3</option>
+                    </select>
+                  </div>
+                </label>
+              </div>
+              <div class="input-group">
+                <label for="message">Message (Optional)
+                  <textarea id="message" placeholder="Type your message"></textarea>
+                </label>
+              </div>
+              <button type="submit" class="request-btn">
+                <span class="request-btn-text">Request a Locksmith</span>
+                <img src="./svg/arrow-to.svg" alt="lock" width="20" height="20"
+                  class="request-btn-img">
+
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="video default-section" aria-label="Service video">
+      <div class="container">
+        <div class="video_content">
+          <video id="hero-video" src="./videos/recorded_video.webm" poster="./images/poster.png"
+            preload="metadata" aria-label="LockSmith service demonstration video" tabindex="-1">
+            <p>Your browser doesn't support HTML5 video. <a
+                href="./videos/recorded_video.webm">Download
+                the
+                video</a> instead.</p>
+          </video>
+          <button class="video_btn" id="play-video-btn" aria-label="Play video" type="button">
+            <img src="./svg/play.svg" alt="" width="20" height="20" aria-hidden="true">
+            <span class="sr-only">Play video</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <section class="services default-section">
+      <div class="container">
+        <h2 class="services_title section-title">We’ve got you covered – pick a service</h2>
+        <div class="services_list">
+          <div class="services_item">
+            <div class="services_item-img">
+              <img class="services_item-img-bg" src="./images/service_img_1.png"
+                alt="image not found" width="100" height="100">
+              <div class="services_item-icon">
+                <img src="./svg/door.svg" alt="image not found" width="20" height="20">
+              </div>
+              <span class="services_item-label">Residential</span>
+            </div>
+            <p class="services_item-description">Locked out of your home? We’ll get you back in
+              safely – no damage.</p>
+          </div>
+          <div class="services_item">
+            <div class="services_item-img">
+              <img class="services_item-img-bg" src="./images/service_img_2.png"
+                alt="image not found" width="100" height="100">
+              <div class="services_item-icon">
+                <img src="./svg/car.svg" alt="image not found" width="20" height="20">
+              </div>
+              <span class="services_item-label">Automotive</span>
+            </div>
+            <p class="services_item-description">Lost your car keys? We cut and program on the spot.
+            </p>
+          </div>
+          <div class="services_item">
+            <div class="services_item-img">
+              <img class="services_item-img-bg" src="./images/service_img_3.png"
+                alt="image not found" width="100" height="100">
+              <div class="services_item-icon">
+                <img src="./svg/car.svg" alt="image not found" width="20" height="20">
+              </div>
+              <span class="services_item-label">Commercial</span>
+            </div>
+            <p class="services_item-description">Protect your business with upgraded high-security
+              locks.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="team default-section">
+      <div class="container">
+        <h2 class="team_title section-title">A Family You Can Trust
+          With Your Security</h2>
+        <p class="team_description">We’re a small family-run team serving the GTA for over a decade.
+          We started SOS Locksmith because we wanted fast, honest help –
+          the kind we’d want for our own home.</p>
+        <div class="team_list">
+          <div class="team_item">
+            <div class="team_item-img">
+              <img src="./images/team_img_1.png" alt="image not found" width="100" height="100">
+            </div>
+            <div class="team_item-content">
+              <h3 class="team_item-title">Johnny</h3>
+              <p class="team_item-description">Client Care Manager</p>
+            </div>
+          </div>
+          <div class="team_item">
+            <div class="team_item-img">
+              <img src="./images/team_img_2.png" alt="image not found" width="100" height="100">
+            </div>
+            <div class="team_item-content">
+              <h3 class="team_item-title">Julio</h3>
+              <p class="team_item-description">Client Care Scheduler</p>
+            </div>
+          </div>
+          <div class="team_item">
+            <div class="team_item-img">
+              <img src="./images/team_img_3.png" alt="image not found" width="100" height="100">
+            </div>
+            <div class="team_item-content">
+              <h3 class="team_item-title">Dian</h3>
+              <p class="team_item-description">Client Care Scheduler</p>
+            </div>
+          </div>
+          <div class="team_item">
+            <div class="team_item-img">
+              <img src="./images/team_img_4.png" alt="image not found" width="100" height="100">
+            </div>
+            <div class="team_item-content">
+              <h3 class="team_item-title">Lala</h3>
+              <p class="team_item-description">Client Care Scheduler</p>
+            </div>
+          </div>
+        </div>
+        <div class="reviews">
+          <div class="reviews_list">
+            <div class="reviews_item">
+              <span class="reviews_item-rating">5,0</span>
+              <img class="reviews_item-stars" src="./images/stars.png" alt="stars" width="100"
+                height="100">
+              <div class="reviews_item-reviewer">
+                <img src="./images/reviewer.png" alt="reviewer" width="100" height="100">
+                <span> J.C. Toronto</span>
+              </div>
+              <p class="reviews_text">I recommend SOS Locksmith Toronto to my family, friends and
+                clients all the time and they never come up short. I love being able to recommend
+                such a reliable local business. Keep up the good work, SOS Locksmith Toronto.</p>
+            </div>
+            <div class="reviews_item">
+              <span class="reviews_item-rating">5,0</span>
+              <img class="reviews_item-stars" src="./images/stars.png" alt="stars" width="100"
+                height="100">
+              <div class="reviews_item-reviewer">
+                <img src="./images/reviewer.png" alt="reviewer" width="100" height="100">
+                <span> J.C. Toronto</span>
+              </div>
+              <p class="reviews_text">It was 2:15 AM, and my key broke off inside a lock. I couldn’t
+                get into my house. Called 3 different places claiming to be 24 hour and SOS
+                Locksmith were the only ones with techs actually available. 30 minutes later - I was
+                getting into my to m bed. Highly recommend.</p>
+            </div>
+          </div>
+          <div class="reviews_img">
+            <img src="./images/content_img.png" alt="image not found" width="100" height="100">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="contact default-section">
+      <div class="container">
+        <h2 class="contact_title section-title">Request a Locksmith</h2>
+        <p class="contact_description">We'll call you back in 5 minutes <br>
+          No call centre – you'll speak directly to our technician.</p>
+        <div class="contact_content">
+          <div class="contact_img">
+            <img src="./images/family-img.png" alt="image not found" width="600" height="600">
+          </div>
+          <div class="contact_form">
+            <form action="#">
+              <label for="name">Your Name
+                <input id="name" type="text" placeholder="Name">
+              </label>
+              <label for="phone">Phone Number
+                <input id="phone" type="tel" placeholder="Phone">
+              </label>
+              <label for="location">Location
+                <input id="location" type="text" placeholder="Location">
+              </label>
+              <label for="service">Service
+                <div class="custom-select" data-select>
+                  <div class="select-trigger" data-select-trigger>
+                    <span class="select-value" data-select-value>Select</span>
+                    <img src="./svg/arrow-down.svg" alt="arrow" width="10" height="10"
+                      class="select-arrow">
+                  </div>
+                  <div class="select-options" data-select-options>
+                    <div class="select-option" data-value="1">Service 1</div>
+                    <div class="select-option" data-value="2">Service 2</div>
+                    <div class="select-option" data-value="3">Service 3</div>
+                  </div>
+                  <select name="service" id="service" required class="is-hidden" aria-hidden="true">
+                    <option value="" disabled selected>Select</option>
+                    <option value="1">Service 1</option>
+                    <option value="2">Service 2</option>
+                    <option value="3">Service 3</option>
+                  </select>
+                </div>
+              </label>
+              <label for="message">Message (Optional)
+                <textarea id="message" placeholder="Type your message"></textarea>
+              </label>
+              <button type="submit" class="btn btn_big btn_yellow">
+                Submit Request
+              </button>
+              <p class="request-sent is-hidden">
+                Thanks! Our family team will reach out shortly.
+                We’re usually on the road within 15 minutes
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="promise default-section">
+      <div class="container">
+        <h2 class="promise_title section-title">Our Promise</h2>
+        <div class="promise_list">
+          <div class="promise_item">
+            <div class="promise_item-img">
+              <img class="promise_item-icon" src="./svg/receipt.svg" alt="receipt" width="100"
+                height="100">
+              <span class="promise_item-number">01</span>
+            </div>
+            <h3 class="promise_item-title">Transparent pricing before we start.</h3>
+          </div>
+          <div class="promise_item">
+            <div class="promise_item-img">
+              <img class="promise_item-icon" src="./svg/security.svg" alt="security" width="100"
+                height="100">
+              <span class="promise_item-number">02</span>
+            </div>
+            <h3 class="promise_item-title">Licensed, bonded, and insured technicians.</h3>
+          </div>
+          <div class="promise_item">
+            <div class="promise_item-img">
+              <img class="promise_item-icon" src="./svg/certificate.svg" alt="certificate"
+                width="100" height="100">
+              <span class="promise_item-number">03</span>
+            </div>
+            <h3 class="promise_item-title">Lifetime guarantee on new lock installations.</h3>
+          </div>
+        </div>
+        <div class="promise_map">
+          <img src="./images/map.png" alt="image not found" width="700" height="550">
+        </div>
+    </section>
+    <section class="works default-section">
+      <div class="container">
+        <h2 class="works_title section-title">How It Works</h2>
+        <div class="works_content">
+          <div class="works_item">
+            <div class="works_item-img">
+              <span class="works_item-number">01</span>
+              <img class="works_item-icon" src="./svg/call.svg" alt="image not found" width="100"
+                height="100">
+            </div>
+            <h3 class="works_item-title">Call or request service.</h3>
+          </div>
+          <div class="divider"></div>
+          <div class="works_item">
+            <div class="works_item-img">
+              <span class="works_item-number">02</span>
+              <img class="works_item-icon" src="./svg/location.svg" alt="image not found"
+                width="100" height="100">
+            </div>
+            <h3 class="works_item-title">Technician arrives in 15 min.</h3>
+          </div>
+          <div class="divider"></div>
+          <div class="works_item">
+            <div class="works_item-img">
+              <span class="works_item-number">03</span>
+              <img class="works_item-icon" src="./svg/shield.svg" alt="image not found" width="100"
+                height="100">
+            </div>
+            <h3 class="works_item-title">You’re safely inside.</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="reviews-testimonials default-section">
+      <div class="container">
+        <h2 class="reviews-testimonials_title section-title">Customer Testimonials</h2>
+        <a href="#" class="reviews-testimonials_link link link_blue">
+          <span>Leave a Review</span>
+          <img src="./svg/arrow-to.svg" alt="arrow" width="20" height="20">
+        </a>
+        <div class="swiper-body">
+          <div class="swiper reviews-testimonials_swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <div class="reviews_item">
+                  <span class="reviews_item-rating">5,0</span>
+                  <img class="reviews_item-stars" src="./images/stars.png" alt="stars" width="100"
+                    height="100">
+                  <div class="reviews_item-reviewer">
+                    <img src="./images/reviewer.png" alt="reviewer" width="100" height="100">
+                    <span> J.C. Toronto</span>
+                  </div>
+                  <p class="reviews_text">I recommend SOS Locksmith Toronto to my family, friends
+                    and
+                    clients all the time and they never come up short. I love being able to
+                    recommend
+                    such a reliable local business. Keep up the good work, SOS Locksmith Toronto.
+                  </p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="reviews_item">
+                  <span class="reviews_item-rating">5,0</span>
+                  <img class="reviews_item-stars" src="./images/stars.png" alt="stars" width="100"
+                    height="100">
+                  <div class="reviews_item-reviewer">
+                    <img src="./images/reviewer.png" alt="reviewer" width="100" height="100">
+                    <span> J.C. Toronto</span>
+                  </div>
+                  <p class="reviews_text">I recommend SOS Locksmith Toronto to my family, friends
+                    and
+                    clients all the time and they never come up short. I love being able to
+                    recommend
+                    such a reliable local business. Keep up the good work, SOS Locksmith Toronto.
+                  </p>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="reviews_item">
+                  <span class="reviews_item-rating">5,0</span>
+                  <img class="reviews_item-stars" src="./images/stars.png" alt="stars" width="100"
+                    height="100">
+                  <div class="reviews_item-reviewer">
+                    <img src="./images/reviewer.png" alt="reviewer" width="100" height="100">
+                    <span> J.C. Toronto</span>
+                  </div>
+                  <p class="reviews_text">I recommend SOS Locksmith Toronto to my family, friends
+                    and
+                    clients all the time and they never come up short. I love being able to
+                    recommend
+                    such a reliable local business. Keep up the good work, SOS Locksmith Toronto.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-buttons">
+            <div class="swiper-button-prev">
+              <img src="./svg/arrow-backward.svg" alt="image not found" width="20" height="20">
+            </div>
+            <div class="swiper-button-next">
+              <img src="./svg/arrow-forward.svg" alt="image not found" width="20" height="20">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  {{> footer }}
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+@use 'variables'as *;
+
+.link {
+    transition: $animation-speed;
+
+    &:hover {
+        transition: $animation-speed;
+    }
+
+    &_white {
+        color: $white;
+
+        &:hover {
+            color: $yellow;
+        }
+    }
+
+    &_blue{
+        color: $blue-brand-500;
+
+        &:hover{
+            color: $blue-brand-900;
+        }
+    }
+
+
+    &_big {
+        font-size: 16px;
+        line-height: $text-m-line-height;
+    }
+
+    &_small {
+        font-size: 14px;
+        line-height: $text-s-line-height;
+    }
+}
