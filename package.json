@@ -4,9 +4,14 @@
   "version": "1.2.0",
   "type": "module",
   "description": "LockSmith - Professional locksmith services landing page",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:fallback": "vite build --config vite.config.fallback.js",
     "preview": "vite preview",
     "lint": "eslint . --ext .js",
     "lint:fix": "eslint . --ext .js --fix",
@@ -23,9 +28,9 @@
     "sass": "^1.71.1",
     "sharp": "^0.34.4",
     "svgo": "^4.0.0",
-    "vite": "^7.1.7",
-    "vite-plugin-handlebars": "^2.0.0",
-    "vite-plugin-image-optimizer": "^2.0.2",
+    "vite": "^5.4.10",
+    "vite-plugin-handlebars": "^1.0.0",
+    "vite-plugin-image-optimizer": "^1.0.0",
     "vite-plugin-imagemin": "^0.6.1"
   },
   "keywords": [
