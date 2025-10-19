@@ -25,18 +25,19 @@
       letter-spacing: $text-m-letter-spacing;
       text-transform: uppercase;
     }
+
+    // Hidden state when scrolled
+    &.header_info-banner_hidden {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
   }
 
   // Scrolled state
-  &--scrolled {
+  &.header_scrolled {
     background-color: rgba($blue-brand-500, 0.95);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba($neutrals-900, 0.1);
-  }
-
-  // Hidden state (scroll down)
-  &--hidden {
-    transform: translateY(-100%);
   }
 
   &_nav {

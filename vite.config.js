@@ -2,6 +2,7 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import handlebars from 'vite-plugin-handlebars';
+import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { htmlFiles } from './getHTMLFileNames';
 
 const input = { main: resolve(__dirname, 'src/index.html') };
@@ -21,6 +22,33 @@ export default defineConfig({
         currentYear: new Date().getFullYear(),
       },
     }),
+    ViteImageOptimizer({
+      test: /\.(jpe?g|png|gif|tiff|bmp|svg)$/i,
+      includePublic: true,
+      minify: true,
+      mozjpeg: {
+        quality: 80,
+      },
+      optipng: {
+        optimizationLevel: 7,
+      },
+      pngquant: {
+        quality: [0.8, 0.9],
+        speed: 4,
+      },
+      svgo: {
+        plugins: [
+          {
+            name: 'removeViewBox',
+            active: false,
+          },
+          {
+            name: 'removeEmptyAttrs',
+            active: false,
+          },
+        ],
+      },
+    }),
   ],
   build: {
     rollupOptions: {
@@ -28,5 +56,16 @@ export default defineConfig({
     },
     outDir: '../dist/',
     emptyOutDir: true,
+    minify: true,
+  },
+  server: {
+    port: 3000,
+    open: true,
+    host: true
+  },
+  preview: {
+    port: 4173,
+    open: true,
+    host: true
   },
 });

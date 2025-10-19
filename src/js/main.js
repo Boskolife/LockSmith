@@ -242,7 +242,7 @@ function updateSelectHoverState(state) {
 // Dev logging guard
 const IS_DEV = process.env.NODE_ENV !== 'production';
 const devLog = (...args) => {
-  if (IS_DEV) console.log(...args);
+  if (IS_DEV) console.log(...args); // eslint-disable-line no-console
 };
 
 // Store video player state
@@ -603,8 +603,10 @@ function unmuteVideo() {
  * Initialize Swiper sliders
  */
 function initSwiper() {
-  const swiperContainer = document.querySelector('.reviews-testimonials_swiper');
-  
+  const swiperContainer = document.querySelector(
+    '.reviews-testimonials_swiper'
+  );
+
   if (swiperContainer) {
     new Swiper('.reviews-testimonials_swiper', {
       speed: 1400,
@@ -634,7 +636,7 @@ function initSwiper() {
  */
 function initAccordions() {
   const accordionContainer = document.querySelector('.js-accordion');
-  
+
   if (accordionContainer) {
     new Accordion({
       containerSelector: '.js-accordion',
@@ -805,95 +807,6 @@ function initLazyLoading() {
 }
 
 /**
- * Initialize header scroll functionality
- */
-function initHeaderScroll() {
-  const header = document.getElementById('header');
-  const infoBanner = document.querySelector('.header_info-banner');
-
-  if (!header || !infoBanner) return;
-
-  let lastScrollY = window.pageYOffset;
-  let ticking = false;
-
-  const infoBannerHeight = infoBanner.offsetHeight;
-
-  // Restore header state from sessionStorage
-  function restoreHeaderState() {
-    if (typeof window.sessionStorage !== 'undefined') {
-      const savedScrollY = window.sessionStorage.getItem('headerScrollY');
-      if (savedScrollY) {
-        const scrollY = parseInt(savedScrollY, 10);
-        if (scrollY > 100) {
-          header.classList.add('header--scrolled');
-          header.style.transform = `translateY(-${infoBannerHeight}px)`;
-          infoBanner.style.transform = 'translateY(-100%)';
-          infoBanner.style.opacity = '0';
-        }
-        if (scrollY > 200) {
-          header.classList.add('header--hidden');
-        }
-      }
-    }
-  }
-
-  // Save header state to sessionStorage
-  function saveHeaderState(scrollY) {
-    if (typeof window.sessionStorage !== 'undefined') {
-      window.sessionStorage.setItem('headerScrollY', scrollY.toString());
-    }
-  }
-
-  function updateHeader() {
-    const currentScrollY = window.pageYOffset;
-
-    if (currentScrollY > 100) {
-      header.classList.add('header--scrolled');
-      header.style.transform = `translateY(-${infoBannerHeight}px)`;
-      infoBanner.style.transform = 'translateY(-100%)';
-      infoBanner.style.opacity = '0';
-    } else {
-      header.classList.remove('header--scrolled');
-      header.style.transform = `translateY(0)`;
-      infoBanner.style.transform = 'translateY(0)';
-      infoBanner.style.opacity = '1';
-    }
-
-    // Hide header on scroll down, show on scroll up
-    if (currentScrollY > lastScrollY && currentScrollY > 200) {
-      header.classList.add('header--hidden');
-    } else {
-      header.classList.remove('header--hidden');
-    }
-
-    // Save state
-    saveHeaderState(currentScrollY);
-
-    lastScrollY = currentScrollY;
-    ticking = false;
-  }
-
-  function requestTick() {
-    if (!ticking) {
-      window.requestAnimationFrame(updateHeader);
-      ticking = true;
-    }
-  }
-
-  // Restore state on page load
-  restoreHeaderState();
-
-  // Clear state when page is unloaded (user closes tab/browser)
-  window.addEventListener('beforeunload', () => {
-    if (typeof window.sessionStorage !== 'undefined') {
-      window.sessionStorage.removeItem('headerScrollY');
-    }
-  });
-
-  window.addEventListener('scroll', requestTick, { passive: true });
-}
-
-/**
  * Initialize accessibility features
  */
 function initAccessibility() {
@@ -916,6 +829,67 @@ function initAccessibility() {
   });
 }
 
+// ===== HEADER SCROLL FUNCTIONALITY =====
+
+/**
+ * Initialize header scroll functionality
+ */
+function initHeaderScroll() {
+  const header = document.getElementById('header');
+  const headerInfoBanner = document.querySelector('.header_info-banner');
+
+  if (!header) {
+    console.warn('Header element not found'); // eslint-disable-line no-console
+    return;
+  }
+
+  const headerInfoBannerHeight = headerInfoBanner.offsetHeight;
+
+  function handleScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Добавляем класс активности если страница не в самом верху
+    if (scrollTop > 0) {
+      header.classList.add('header_scrolled');
+      header.style.transform = `translateY(-${headerInfoBannerHeight}px)`;
+    } else {
+      header.classList.remove('header_scrolled');
+      header.style.transform = `translateY(0)`;
+    }
+
+    // Скрываем header_info-banner если страница не в самом верху
+    if (headerInfoBanner) {
+      if (scrollTop > 0) {
+        headerInfoBanner.classList.add('header_info-banner_hidden');
+      } else {
+        headerInfoBanner.classList.remove('header_info-banner_hidden');
+      }
+    }
+  }
+
+  // Throttle scroll events for better performance
+  let ticking = false;
+  function requestTick() {
+    if (!ticking) {
+      window.requestAnimationFrame(handleScroll);
+      ticking = true;
+    }
+  }
+
+  function onScroll() {
+    ticking = false;
+    requestTick();
+  }
+
+  // Add scroll event listener
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Check initial scroll position
+  handleScroll();
+
+  devLog('Header scroll functionality initialized');
+}
+
 // ===== INITIALIZATION =====
 
 /**
@@ -930,8 +904,8 @@ function init() {
   initFormValidation();
   initSmoothScrolling();
   initLazyLoading();
-  initHeaderScroll();
   initAccessibility();
+  initHeaderScroll();
 
   // Make functions globally available for debugging
   window.LockSmith = {
@@ -942,8 +916,8 @@ function init() {
     initFormValidation,
     initSmoothScrolling,
     initLazyLoading,
-    initHeaderScroll,
     initAccessibility,
+    initHeaderScroll,
     // Video controls
     playVideo,
     pauseVideo,
@@ -976,8 +950,8 @@ if (typeof window !== 'undefined' && window.module && window.module.exports) {
     initFormValidation,
     initSmoothScrolling,
     initLazyLoading,
-    initHeaderScroll,
     initAccessibility,
+    initHeaderScroll,
     init,
   };
 }
