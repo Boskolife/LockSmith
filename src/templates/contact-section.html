@@ -1,0 +1,56 @@
+<section class="contact default-section" id="contact">
+    <div class="container">
+        <h2 class="contact_title section-title">Request a Locksmith</h2>
+        <p class="contact_description">We'll call you back in 5 minutes <br>
+            No call centre – you'll speak directly to our technician.</p>
+        <div class="contact_content">
+            <div class="contact_img">
+                <img src="./images/family-img.png" alt="image not found" width="600" height="600">
+            </div>
+            <div class="contact_form">
+                <form action="#">
+                    <label for="name">Your Name
+                        <input id="name" type="text" placeholder="Name">
+                    </label>
+                    <label for="phone">Phone Number
+                        <input id="phone" type="tel" placeholder="Phone">
+                    </label>
+                    <label for="location">Location
+                        <input id="location" type="text" placeholder="Location">
+                    </label>
+                    <label for="service">Service
+                        <div class="custom-select" data-select>
+                            <div class="select-trigger" data-select-trigger>
+                                <span class="select-value" data-select-value>Select</span>
+                                <img src="./svg/arrow-down.svg" alt="arrow" width="10" height="10"
+                                    class="select-arrow">
+                            </div>
+                            <div class="select-options" data-select-options>
+                                <div class="select-option" data-value="1">Service 1</div>
+                                <div class="select-option" data-value="2">Service 2</div>
+                                <div class="select-option" data-value="3">Service 3</div>
+                            </div>
+                            <select name="service" id="service" required class="is-hidden"
+                                aria-hidden="true">
+                                <option value="" disabled selected>Select</option>
+                                <option value="1">Service 1</option>
+                                <option value="2">Service 2</option>
+                                <option value="3">Service 3</option>
+                            </select>
+                        </div>
+                    </label>
+                    <label for="message">Message (Optional)
+                        <textarea id="message" placeholder="Type your message"></textarea>
+                    </label>
+                    <button type="submit" class="btn btn_big btn_yellow">
+                        Submit Request
+                    </button>
+                    <p class="request-sent is-hidden">
+                        Thanks! Our family team will reach out shortly.
+                        We’re usually on the road within 15 minutes
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -245,6 +245,60 @@ const devLog = (...args) => {
   if (IS_DEV) console.log(...args); // eslint-disable-line no-console
 };
 
+/**
+ * Create error message element
+ * @param {string} message - Error message
+ * @param {string} details - Error details
+ * @param {string} className - CSS class name
+ * @param {string} linkText - Optional link text
+ * @param {string} linkHref - Optional link href
+ * @returns {HTMLElement} Error message element
+ */
+function createErrorMessage(message, details = '', className = 'error-message', linkText = '', linkHref = '') {
+  const errorDiv = document.createElement('div');
+  errorDiv.className = className;
+  
+  let linkHtml = '';
+  if (linkText && linkHref) {
+    linkHtml = `<p><a href="${linkHref}" download>${linkText}</a></p>`;
+  }
+  
+  errorDiv.innerHTML = `
+    <p><strong>${message}</strong></p>
+    ${details ? `<p>${details}</p>` : ''}
+    ${linkHtml}
+  `;
+  
+  return errorDiv;
+}
+
+/**
+ * Get element safely with warning if not found
+ * @param {string} selector - CSS selector
+ * @param {Element} context - Context element (default: document)
+ * @returns {Element|null} Found element or null
+ */
+function getElementSafely(selector, context = document) {
+  const element = context.querySelector(selector);
+  if (!element) {
+    console.warn(`Element not found: ${selector}`); // eslint-disable-line no-console
+  }
+  return element;
+}
+
+/**
+ * Get element by ID safely with warning if not found
+ * @param {string} id - Element ID
+ * @returns {Element|null} Found element or null
+ */
+function getElementByIdSafely(id) {
+  const element = document.getElementById(id);
+  if (!element) {
+    console.warn(`Element with ID not found: ${id}`); // eslint-disable-line no-console
+  }
+  return element;
+}
+
 // Store video player state
 let videoPlayerState = {
   video: null,
@@ -256,8 +310,8 @@ let videoPlayerState = {
  * Initialize video player
  */
 function initVideoPlayer() {
-  const video = document.getElementById('hero-video');
-  const playButton = document.getElementById('play-video-btn');
+  const video = getElementByIdSafely('hero-video');
+  const playButton = getElementByIdSafely('play-video-btn');
 
   if (!video || !playButton) {
     console.warn('Video player elements not found'); // eslint-disable-line no-console
@@ -289,15 +343,14 @@ function initVideoPlayer() {
  * Show video source error
  */
 function showVideoSourceError() {
-  const videoContainer = document.querySelector('.video_content');
+  const videoContainer = getElementSafely('.video_content');
   if (!videoContainer) return;
 
-  const errorMessage = document.createElement('div');
-  errorMessage.className = 'video-error';
-  errorMessage.innerHTML = `
-        <p><strong>Video not available</strong></p>
-        <p>No video source has been configured.</p>
-    `;
+  const errorMessage = createErrorMessage(
+    'Video not available',
+    'No video source has been configured.',
+    'video-error'
+  );
 
   videoContainer.appendChild(errorMessage);
 }
@@ -352,7 +405,7 @@ function bindVideoEvents() {
     console.error('Video error:', e); // eslint-disable-line no-console
     const error = video.error;
     if (error) {
-      console.error('Video error details:', {
+      console.error('Video error details:', { // eslint-disable-line no-console
         code: error.code,
         message: error.message,
         networkState: video.networkState,
@@ -513,13 +566,13 @@ function handleVideoError() {
   }
 
   // Show fallback message
-  const errorMessage = document.createElement('div');
-  errorMessage.className = 'video-error';
-  errorMessage.innerHTML = `
-        <p><strong>${errorText}</strong></p>
-        <p>${errorDetails}</p>
-        <p><a href="${video.src}" download>Download video instead</a></p>
-    `;
+  const errorMessage = createErrorMessage(
+    errorText,
+    errorDetails,
+    'video-error',
+    'Download video instead',
+    video.src
+  );
 
   video.parentNode.appendChild(errorMessage);
   // Hide play button via CSS class instead of inline styles
@@ -533,11 +586,11 @@ function handleVideoPlayError() {
   const { video } = videoPlayerState;
 
   // Show user-friendly error message
-  const errorMessage = document.createElement('div');
-  errorMessage.className = 'video-play-error';
-  errorMessage.innerHTML = `
-        <p>Unable to play video. Please try again.</p>
-    `;
+  const errorMessage = createErrorMessage(
+    'Unable to play video. Please try again.',
+    '',
+    'video-play-error'
+  );
 
   video.parentNode.appendChild(errorMessage);
 
@@ -764,7 +817,7 @@ function initSmoothScrolling() {
       e.preventDefault();
 
       const targetId = link.getAttribute('href').substring(1);
-      const targetElement = document.getElementById(targetId);
+      const targetElement = getElementByIdSafely(targetId);
 
       if (targetElement) {
         targetElement.scrollIntoView({
@@ -835,8 +888,8 @@ function initAccessibility() {
  * Initialize header scroll functionality
  */
 function initHeaderScroll() {
-  const header = document.getElementById('header');
-  const headerInfoBanner = document.querySelector('.header_info-banner');
+  const header = getElementByIdSafely('header');
+  const headerInfoBanner = getElementSafely('.header_info-banner');
 
   if (!header) {
     console.warn('Header element not found'); // eslint-disable-line no-console

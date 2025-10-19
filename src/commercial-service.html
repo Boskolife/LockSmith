@@ -1,0 +1,220 @@
+{{> head }}
+
+<body>
+    {{> header }}
+    <main id="main">
+        <section class="hero service-hero">
+            <div class="hero_bg">
+                <div class="overlay"></div>
+                <img src="./images/service_img_3.jpg" alt="image not found" width="100%"
+                    height="100%">
+            </div>
+            <div class="container">
+                <div class="hero_content">
+                    <h1 class="hero_title">
+                        Lost your car keys? We cut and program on the spot.
+                    </h1>
+                    <button class="btn btn_big btn_yellow hero_btn">Call Now</button>
+                    <div class="hero_footer">
+                        <form action="#" class="hero_form">
+                            <div class="input-group">
+                                <label for="name">Your Name
+                                    <input id="name" type="text" placeholder="Name">
+                                </label>
+                                <label for="phone">Phone Number
+                                    <input id="phone" type="tel" placeholder="Phone">
+                                </label>
+                            </div>
+                            <div class="input-group">
+                                <label for="email">Location
+                                    <input id="email" type="email" placeholder="Email">
+                                </label>
+                                <label for="service">Service
+                                    <div class="custom-select" data-select>
+                                        <div class="select-trigger" data-select-trigger>
+                                            <span class="select-value"
+                                                data-select-value>Select</span>
+                                            <img src="./svg/arrow-down.svg" alt="arrow" width="10"
+                                                height="10" class="select-arrow">
+                                        </div>
+                                        <div class="select-options" data-select-options>
+                                            <div class="select-option" data-value="1">Service 1
+                                            </div>
+                                            <div class="select-option" data-value="2">Service 2
+                                            </div>
+                                            <div class="select-option" data-value="3">Service 3
+                                            </div>
+                                        </div>
+                                        <select name="service" id="service" required
+                                            class="is-hidden" aria-hidden="true">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="1">Service 1</option>
+                                            <option value="2">Service 2</option>
+                                            <option value="3">Service 3</option>
+                                        </select>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="input-group">
+                                <label for="message">Message (Optional)
+                                    <textarea id="message"
+                                        placeholder="Type your message"></textarea>
+                                </label>
+                            </div>
+                            <button type="submit" class="request-btn">
+                                <span class="request-btn-text">Request a Locksmith</span>
+                                <svg class="request-btn-icon" data-svg-icon="arrow-to">
+                                    <use href="#icon-arrow-to"></use>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="services-list default-section">
+            <div class="container">
+                <h2 class="services-list_title section-title">
+                    Automative Locksmith Services
+                </h2>
+                <div class="services-list_content">
+                    <div class="services-list_item">
+                        <div class="services-list_item-img">
+                            <img src="./svg/car-lock.svg" alt="image not found" width="40"
+                                height="100">
+                        </div>
+                        <h3 class="services-list_item-title">
+                            Auto & HandiCap <br> Door Operators
+                        </h3>
+                    </div>
+                    <div class="services-list_item">
+                        <div class="services-list_item-img">
+                            <img src="./svg/key.svg" alt="image not found" width="40" height="40">
+                        </div>
+                        <h3 class="services-list_item-title">
+                            Access Control <br> Systems
+                        </h3>
+                    </div>
+                    <div class="services-list_item">
+                        <div class="services-list_item-img">
+                            <img src="./svg/car-lock.svg" alt="image not found" width="40"
+                                height="100">
+                        </div>
+                        <h3 class="services-list_item-title">
+                            Commercial Door <br> Repairs
+                        </h3>
+                    </div>
+                    <div class="services-list_item">
+                        <div class="services-list_item-img">
+                            <img src="./svg/key.svg" alt="image not found" width="40" height="40">
+                        </div>
+                        <h3 class="services-list_item-title">
+                            Commercial Locks - Install Repair & Replace
+                        </h3>
+                    </div>
+                    <div class="services-list_item">
+                        <div class="services-list_item-img">
+                            <img src="./svg/car-lock.svg" alt="image not found" width="40"
+                                height="100">
+                        </div>
+                        <h3 class="services-list_item-title">
+                            Door <br>
+                            Closers
+                        </h3>
+                    </div>
+                    <div class="services-list_item">
+                        <div class="services-list_item-img">
+                            <img src="./svg/key.svg" alt="image not found" width="40" height="40">
+                        </div>
+                        <h3 class="services-list_item-title">
+                            Emergency <br>
+                            Exit Doors
+                        </h3>
+                    </div>
+                    <div class="services-list_item">
+                        <div class="services-list_item-img">
+                            <img src="./svg/car-lock.svg" alt="image not found" width="40"
+                                height="100">
+                        </div>
+                        <h3 class="services-list_item-title">
+                            Lock-Outs &
+                            <br>
+                            Re-Keys
+                        </h3>
+                    </div>
+                    <div class="services-list_item">
+                        <div class="services-list_item-img">
+                            <img src="./svg/key.svg" alt="image not found" width="40" height="40">
+                        </div>
+                        <h3 class="services-list_item-title">
+                            Panic Bars &
+                            <br>
+                            Push Bars
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="service-articles default-section">
+            <div class="container">
+                <div class="service-articles_content">
+                    <div class="service-articles-item">
+                        <div class="service-articles-item-content">
+                            <h3 class="service-articles-item-title">Door Closer Sales, Service &
+                                Installation</h3>
+                            <p class="service-articles-item-text">
+                                One of our most frequently requested services is the installation
+                                and repair of door closers in and around the GTA. Our senior techs
+                                are experts at making sure little fingers stay safe! Our volume
+                                purchase of the industries best door closers allows us to pass on
+                                great saving to our clients and our senior technicians will get the
+                                job done right the first time.
+                                <br>
+                                <br>
+                                Our customers rave about our quick work and recommend us because we
+                                understand that work must be completed with minimal disruption and
+                                that the finished product is designed
+                                to keep people safe. Call us now for a fast friendly quote.
+                                Cost to have a technician on site to provide a detailed estimate is
+                                minimal and should you choose to proceed all work is fully
+                                warrantied.
+                            </p>
+                        </div>
+                        <div class="service-articles-item-img">
+                            <img src="./images/service-article-img_5.png" alt="image not found"
+                                width="860" height="370">
+                        </div>
+                    </div>
+                    <div class="service-articles-item reverse">
+                        <div class="service-articles-item-content">
+                            <h3 class="service-articles-item-title">Automatic Door Operator Sales,
+                                Service & Installation</h3>
+                            <p class="service-articles-item-text">
+                                When we get a call to install or repair an automatic door opener we
+                                understand just how critical this is to get done quickly and
+                                properly. After all, automatic door openers make life easier every
+                                single day for people we care about too! Our process is simple.
+                                A negligible fee for a senior tech to come on site and provide you a
+                                detailed quote before beginning work is step one. Should we earn
+                                your business upon providing you a quote, the technician will
+                                complete the work quickly and with minimal disruption
+                                to your location.
+                            </p>
+                        </div>
+                        <div class="service-articles-item-img">
+                            <img src="./images/service-article-img_6.png" alt="image not found"
+                                width="860" height="370">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{> contact-section }}
+        {{> promise-section }}
+        {{> how-it-works-section }}
+        {{> reviews-section}}
+    </main>
+    {{> footer }}
+</body>
+
+</html>

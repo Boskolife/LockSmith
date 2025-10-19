@@ -1,0 +1,162 @@
+{{> head }}
+
+<body>
+    {{> header }}
+    <main id="main">
+        <section class="hero service-hero">
+            <div class="hero_bg">
+                <div class="overlay"></div>
+                <img src="./images/service_img_2.jpg" alt="image not found" width="100%"
+                    height="100%">
+            </div>
+            <div class="container">
+                <div class="hero_content">
+                    <h1 class="hero_title">
+                        Lost your car keys? We cut and program on the spot.
+                    </h1>
+                    <button class="btn btn_big btn_yellow hero_btn">Call Now</button>
+                    <div class="hero_footer">
+                        <form action="#" class="hero_form">
+                            <div class="input-group">
+                                <label for="name">Your Name
+                                    <input id="name" type="text" placeholder="Name">
+                                </label>
+                                <label for="phone">Phone Number
+                                    <input id="phone" type="tel" placeholder="Phone">
+                                </label>
+                            </div>
+                            <div class="input-group">
+                                <label for="email">Location
+                                    <input id="email" type="email" placeholder="Email">
+                                </label>
+                                <label for="service">Service
+                                    <div class="custom-select" data-select>
+                                        <div class="select-trigger" data-select-trigger>
+                                            <span class="select-value"
+                                                data-select-value>Select</span>
+                                            <img src="./svg/arrow-down.svg" alt="arrow" width="10"
+                                                height="10" class="select-arrow">
+                                        </div>
+                                        <div class="select-options" data-select-options>
+                                            <div class="select-option" data-value="1">Service 1
+                                            </div>
+                                            <div class="select-option" data-value="2">Service 2
+                                            </div>
+                                            <div class="select-option" data-value="3">Service 3
+                                            </div>
+                                        </div>
+                                        <select name="service" id="service" required
+                                            class="is-hidden" aria-hidden="true">
+                                            <option value="" disabled selected>Select</option>
+                                            <option value="1">Service 1</option>
+                                            <option value="2">Service 2</option>
+                                            <option value="3">Service 3</option>
+                                        </select>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="input-group">
+                                <label for="message">Message (Optional)
+                                    <textarea id="message"
+                                        placeholder="Type your message"></textarea>
+                                </label>
+                            </div>
+                            <button type="submit" class="request-btn">
+                                <span class="request-btn-text">Request a Locksmith</span>
+                                <svg class="request-btn-icon" data-svg-icon="arrow-to">
+                                    <use href="#icon-arrow-to"></use>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="services-list default-section">
+            <div class="container">
+                <h2 class="services-list_title section-title">
+                    Automative Locksmith Services
+                </h2>
+                <div class="services-list_content">
+                    <div class="services-list_item">
+                        <div class="services-list_item-img">
+                            <img src="./svg/car-lock.svg" alt="image not found" width="40"
+                                height="100">
+                        </div>
+                        <h3 class="services-list_item-title">
+                            Car Unlocks
+                        </h3>
+                    </div>
+                    <div class="services-list_item">
+                        <div class="services-list_item-img">
+                            <img src="./svg/key.svg" alt="image not found" width="40" height="40">
+                        </div>
+                        <h3 class="services-list_item-title">
+                            Lost Key Replacement
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="service-articles default-section">
+            <div class="container">
+                <div class="service-articles_content">
+                    <div class="service-articles-item">
+                        <div class="service-articles-item-content">
+                            <h3 class="service-articles-item-title">What to Do If You Lock Your Keys
+                                Inside Your Car</h3>
+                            <p class="service-articles-item-text">
+                                It happens to everyone – you shut the door, hear the lock click, and
+                                realize your keys are still inside. First, don’t panic.
+                                Check all doors and the trunk; sometimes one may remain unlocked. If
+                                you have a spare key nearby, try retrieving it before taking further
+                                steps.
+                                <br>
+                                <br>
+                                If that’s not an option, the safest solution is to call a licensed
+                                automotive locksmith. Modern vehicles have complex locking systems,
+                                and attempting to open the door yourself can damage the car. A
+                                professional can unlock it quickly and safely, often without leaving
+                                a scratch.
+                            </p>
+                        </div>
+                        <div class="service-articles-item-img">
+                            <img src="./images/service-article-img_3.png" alt="image not found"
+                                width="860" height="370">
+                        </div>
+                    </div>
+                    <div class="service-articles-item reverse">
+                        <div class="service-articles-item-content">
+                            <h3 class="service-articles-item-title">How to Avoid Damage When
+                                Unlocking a Car</h3>
+                            <p class="service-articles-item-text">
+                                DIY methods, like using coat hangers or screwdrivers, can easily
+                                damage door seals, scratch paint, or break internal mechanisms.
+                                Licensed locksmiths use specialized tools designed to unlock cars
+                                without causing harm. They’re trained to handle different makes and
+                                models, including high-security and keyless systems.
+                                <br>
+                                <br>
+                                Choosing a professional not only protects your vehicle but also
+                                saves you money in the long run. Many locksmiths offer 24/7
+                                emergency services, so you can get help whenever you need it –
+                                safely and efficiently.
+                            </p>
+                        </div>
+                        <div class="service-articles-item-img">
+                            <img src="./images/service-article-img_4.png" alt="image not found"
+                                width="860" height="370">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {{> contact-section }}
+        {{> promise-section }}
+        {{> how-it-works-section }}
+        {{> reviews-section}}
+    </main>
+    {{> footer }}
+</body>
+
+</html>

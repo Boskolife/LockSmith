@@ -341,3 +341,59 @@ transition: $list;
 		line-height: $line-height;
 	}
 }
+
+// ===== PROJECT-SPECIFIC MIXINS =====
+
+/// Blue brand background color
+/// @example scss - Usage
+///   .header {
+///     @include blue-brand-bg;
+///   }
+@mixin blue-brand-bg {
+	background-color: $blue-brand-500;
+}
+
+/// Button base styles
+/// @example scss - Usage
+///   .btn {
+///     @include button-base;
+///   }
+@mixin button-base {
+	padding: 16px;
+	margin: 0;
+	border: none;
+	cursor: pointer;
+}
+
+/// Error message styles
+/// @example scss - Usage
+///   .error-message {
+///     @include error-message;
+///   }
+@mixin error-message {
+	padding: 12px;
+	background-color: $system-red-100;
+	color: $system-red-900;
+	border-radius: 4px;
+}
+
+/// Container styles
+/// @example scss - Usage
+///   .container {
+///     @include container;
+///   }
+@mixin container {
+	margin: 0 auto;
+	padding: 0 16px;
+}
+
+/// Flex center
+/// @example scss - Usage
+///   .centered {
+///     @include flex-center;
+///   }
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

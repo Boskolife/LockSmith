@@ -17,10 +17,11 @@
 @use 'base/buttons'as *;
 @use 'base/links'as *;
 @use 'base/accordion'as *;
+
 // Import layout styles
 @use 'layout/header'as *;
 @use 'layout/common'as *;
-@use 'layout/main-page'as *;
+@use 'layout/pages'as *;
 @use 'layout/footer'as *;
 
 // Import Swiper styles

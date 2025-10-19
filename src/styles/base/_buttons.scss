@@ -81,7 +81,8 @@
         transition: $animation-speed;
     }
 
-    &-img {
+    &-icon {
+        stroke: $yellow;
         width: 40px;
         height: 40px;
 
@@ -102,6 +103,11 @@
     }
 }
 
+.swiper-button-prev {
+    img {
+        rotate: 180deg;
+    }
+}
 
 .swiper-button-prev,
 .swiper-button-next {
@@ -133,4 +139,8 @@
 .swiper-button-disabled {
     opacity: 1 !important;
     background-color: $neutrals-800;
+
+    img{
+        opacity: 0.5;
+    }
 }

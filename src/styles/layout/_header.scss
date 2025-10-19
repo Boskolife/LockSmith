@@ -102,6 +102,7 @@
       display: none;
       width: 24px;
       height: 24px;
+      stroke: $blue-brand-900;
 
       @include media ("<desktop") {
         display: block;

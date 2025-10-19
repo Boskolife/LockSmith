@@ -1,8 +1,10 @@
 @use '../vendors/include-media'as *;
 @use '../base/variables'as *;
 @use '../base/adaptive'as *;
+@use '../base/mixins'as *;
 
 html {
+    scrollbar-width: smooth;
 
     // Webkit scrollbar styles (Chrome, Safari, Edge)
     ::-webkit-scrollbar {
@@ -31,8 +33,7 @@ html {
 .container {
     max-width: 1310px;
     width: 100%;
-    margin: 0 auto;
-    padding: 0 16px;
+    @include container;
 }
 
 
@@ -43,4 +44,13 @@ html {
 .default-section {
     @include adaptive-value("padding-top", 92, 56, 1);
     @include adaptive-value("padding-bottom", 92, 56, 1);
+}
+
+#how-it-works,
+#contact,
+#reviews,
+#promise,
+#services,
+#about {
+    scroll-margin-top: 50px;
 }
