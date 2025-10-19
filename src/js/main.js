@@ -1,36 +1,36 @@
-// import Swiper JS
-import Swiper from 'swiper';
-import { Navigation } from 'swiper/modules';
-import { Accordion } from './components/accordions/accordion';
-// import Swiper styles
+// // import Swiper JS
+// import Swiper from 'swiper';
+// import { Navigation } from 'swiper/modules';
+// import { Accordion } from './components/accordions/accordion';
+// // import Swiper styles
 
-new Swiper('.reviews-testimonials_swiper', {
-  speed: 1400,
-  slidesPerView: 2,
-  spaceBetween: 20,
-  modules: [Navigation],
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-  breakpoints: {
-    320: {
-      slidesPerView: 1,
-    },
-    768: {
-      slidesPerView: 2,
-    },
-  },
-});
+// new Swiper('.reviews-testimonials_swiper', {
+//   speed: 1400,
+//   slidesPerView: 2,
+//   spaceBetween: 20,
+//   modules: [Navigation],
+//   navigation: {
+//     nextEl: '.swiper-button-next',
+//     prevEl: '.swiper-button-prev',
+//   },
+//   breakpoints: {
+//     320: {
+//       slidesPerView: 1,
+//     },
+//     768: {
+//       slidesPerView: 2,
+//     },
+//   },
+// });
 
-// Initialize accordions
-new Accordion({
-  containerSelector: '.js-accordion',
-  itemSelector: '.js-accordion-item',
-  itemTriggerSelector: '.js-accordion-toggler',
-  itemContentSelector: '.js-accordion-content',
-  type: 'multiply',
-});
+// // Initialize accordions
+// new Accordion({
+//   containerSelector: '.js-accordion',
+//   itemSelector: '.js-accordion-item',
+//   itemTriggerSelector: '.js-accordion-toggler',
+//   itemContentSelector: '.js-accordion-content',
+//   type: 'multiply',
+// });
 
 // Store select instances
 const selectInstances = new Map();

@@ -82,9 +82,9 @@ export default defineConfig({
   },
   css: {
     devSourcemap: true,
-    postcss: {
-      plugins: []
-    }
   },
   assetsInclude: ['**/*.svg', '**/*.png', '**/*.jpg', '**/*.jpeg', '**/*.gif', '**/*.webp'],
+  define: {
+    global: 'globalThis',
+  },
 });
