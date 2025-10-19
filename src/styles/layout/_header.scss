@@ -87,16 +87,33 @@
     letter-spacing: $text-m-letter-spacing;
   }
 
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(235, 93, 5, 0.7);
+    }
+
+    70% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 10px rgba(235, 93, 5, 0);
+    }
+
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(235, 93, 5, 0);
+    }
+  }
 
   &_phone {
-
     @include media ("<desktop") {
       width: 48px;
       height: 48px;
       border-radius: 50%;
       min-width: auto;
       padding: 0;
+      animation: pulse 2s infinite;
     }
+
 
     .phone-icon {
       display: none;
