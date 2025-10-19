@@ -1,36 +1,8 @@
-// // import Swiper JS
-// import Swiper from 'swiper';
-// import { Navigation } from 'swiper/modules';
-// import { Accordion } from './components/accordions/accordion';
-// // import Swiper styles
-
-// new Swiper('.reviews-testimonials_swiper', {
-//   speed: 1400,
-//   slidesPerView: 2,
-//   spaceBetween: 20,
-//   modules: [Navigation],
-//   navigation: {
-//     nextEl: '.swiper-button-next',
-//     prevEl: '.swiper-button-prev',
-//   },
-//   breakpoints: {
-//     320: {
-//       slidesPerView: 1,
-//     },
-//     768: {
-//       slidesPerView: 2,
-//     },
-//   },
-// });
-
-// // Initialize accordions
-// new Accordion({
-//   containerSelector: '.js-accordion',
-//   itemSelector: '.js-accordion-item',
-//   itemTriggerSelector: '.js-accordion-toggler',
-//   itemContentSelector: '.js-accordion-content',
-//   type: 'multiply',
-// });
+// import Swiper JS
+import Swiper from 'swiper';
+import { Navigation } from 'swiper/modules';
+import { Accordion } from './components/accordions/accordion';
+// import Swiper styles
 
 // Store select instances
 const selectInstances = new Map();
@@ -625,6 +597,55 @@ function unmuteVideo() {
   }
 }
 
+// ===== SWIPER FUNCTIONALITY =====
+
+/**
+ * Initialize Swiper sliders
+ */
+function initSwiper() {
+  const swiperContainer = document.querySelector('.reviews-testimonials_swiper');
+  
+  if (swiperContainer) {
+    new Swiper('.reviews-testimonials_swiper', {
+      speed: 1400,
+      slidesPerView: 2,
+      spaceBetween: 20,
+      modules: [Navigation],
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 1,
+        },
+        768: {
+          slidesPerView: 2,
+        },
+      },
+    });
+  }
+}
+
+// ===== ACCORDION FUNCTIONALITY =====
+
+/**
+ * Initialize accordions
+ */
+function initAccordions() {
+  const accordionContainer = document.querySelector('.js-accordion');
+  
+  if (accordionContainer) {
+    new Accordion({
+      containerSelector: '.js-accordion',
+      itemSelector: '.js-accordion-item',
+      itemTriggerSelector: '.js-accordion-toggler',
+      itemContentSelector: '.js-accordion-content',
+      type: 'multiply',
+    });
+  }
+}
+
 // ===== UTILITY FUNCTIONS =====
 
 /**
@@ -902,6 +923,8 @@ function initAccessibility() {
  */
 function init() {
   // Initialize all components
+  initSwiper();
+  initAccordions();
   initCustomSelects();
   initVideoPlayer();
   initFormValidation();
@@ -912,6 +935,8 @@ function init() {
 
   // Make functions globally available for debugging
   window.LockSmith = {
+    initSwiper,
+    initAccordions,
     initCustomSelects,
     initVideoPlayer,
     initFormValidation,
@@ -944,6 +969,8 @@ if (document.readyState === 'loading') {
 // Export functions for potential module usage
 if (typeof window !== 'undefined' && window.module && window.module.exports) {
   window.module.exports = {
+    initSwiper,
+    initAccordions,
     initCustomSelects,
     initVideoPlayer,
     initFormValidation,
