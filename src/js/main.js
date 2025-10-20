@@ -661,7 +661,7 @@ function initSwiper() {
         prevEl: prevButton ? '.swiper-button-prev' : null,
       },
       breakpoints: {
-        320: {
+        280: {
           slidesPerView: 1,
         },
         768: {
@@ -1042,6 +1042,135 @@ function initHeaderScroll() {
   handleScroll();
 }
 
+// ===== FLOATING CTA FUNCTIONALITY =====
+
+/**
+ * Initialize floating CTA button
+ */
+function initFloatingCTA() {
+  // Check if floating CTA is enabled via data attribute
+  const body = document.body;
+  if (!body || body.getAttribute('data-sticky-cta') !== 'on') {
+    return;
+  }
+
+  const floatingBtn = document.querySelector('.floating-btn');
+  if (!floatingBtn) {
+    return;
+  }
+
+  const heroSection = document.querySelector('.hero');
+  const footer = document.querySelector('footer');
+
+  if (!heroSection) {
+    return;
+  }
+
+  // State management
+  const state = {
+    isVisible: false,
+    isOverFooter: false,
+    isSmallScreen: window.innerWidth < 320,
+  };
+
+  // Intersection Observer for hero section
+  const heroObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) {
+          // Hero section is out of view - show floating button (if not over footer)
+          state.isVisible = true;
+          if (!state.isOverFooter) {
+            showFloatingButton();
+          }
+        } else {
+          // Hero section is in view - hide floating button
+          state.isVisible = false;
+          hideFloatingButton();
+        }
+      });
+    },
+    {
+      threshold: 0,
+      rootMargin: '0px 0px 0px 0px',
+    }
+  );
+
+  // Intersection Observer for footer
+  let footerObserver = null;
+  if (footer) {
+    footerObserver = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Footer is in view - hide floating button
+            state.isOverFooter = true;
+            hideFloatingButtonOverFooter();
+          } else {
+            // Footer is out of view - show floating button if hero is also out of view
+            state.isOverFooter = false;
+            if (state.isVisible) {
+              showFloatingButton();
+            }
+          }
+        });
+      },
+      {
+        threshold: 0,
+        rootMargin: '0px 0px 0px 0px',
+      }
+    );
+  }
+
+  // Screen size detection
+  function detectScreenSize() {
+    state.isSmallScreen = window.innerWidth < 320;
+    // Update button visibility based on current state
+    if (state.isVisible && !state.isOverFooter) {
+      showFloatingButton();
+    } else if (state.isOverFooter) {
+      hideFloatingButtonOverFooter();
+    } else {
+      hideFloatingButton();
+    }
+  }
+
+  // Show floating button
+  function showFloatingButton() {
+    floatingBtn.classList.add('is-visible');
+    floatingBtn.classList.remove('is-hidden', 'is-over-footer');
+  }
+
+  // Hide floating button
+  function hideFloatingButton() {
+    floatingBtn.classList.remove('is-visible');
+    floatingBtn.classList.add('is-hidden');
+  }
+
+  // Hide floating button when over footer
+  function hideFloatingButtonOverFooter() {
+    floatingBtn.classList.remove('is-visible');
+    floatingBtn.classList.add('is-over-footer');
+  }
+
+  // Event listeners
+  function setupEventListeners() {
+    // Resize listener for screen size changes
+    window.addEventListener('resize', detectScreenSize);
+  }
+
+  // Initialize observers and event listeners
+  heroObserver.observe(heroSection);
+  if (footerObserver && footer) {
+    footerObserver.observe(footer);
+  }
+
+  setupEventListeners();
+
+  // Initial state check
+  detectScreenSize();
+}
+
 // ===== INITIALIZATION =====
 
 /**
@@ -1058,6 +1187,7 @@ function init() {
   initLazyLoading();
   initAccessibility();
   initHeaderScroll();
+  initFloatingCTA();
 
   // Make functions globally available for debugging
   window.LockSmith = {
@@ -1070,6 +1200,7 @@ function init() {
     initLazyLoading,
     initAccessibility,
     initHeaderScroll,
+    initFloatingCTA,
     // Video controls
     playVideo,
     pauseVideo,
