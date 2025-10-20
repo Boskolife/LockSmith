@@ -809,6 +809,10 @@
     .reviews_item {
         border: $border-width-l solid $yellow-brand-500;
         background-color: $yellow-brand-100;
+
+        @include media ("<xs-phone") {
+            min-height: 270px;
+        }
     }
 }
 
