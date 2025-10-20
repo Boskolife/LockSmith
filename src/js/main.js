@@ -1071,6 +1071,7 @@ function initFloatingCTA() {
     isVisible: false,
     isOverFooter: false,
     isSmallScreen: window.innerWidth < 320,
+    glowInterval: null,
   };
 
   // Intersection Observer for hero section
@@ -1139,24 +1140,84 @@ function initFloatingCTA() {
   function showFloatingButton() {
     floatingBtn.classList.add('is-visible');
     floatingBtn.classList.remove('is-hidden', 'is-over-footer');
+    startGlowAnimation();
   }
 
   // Hide floating button
   function hideFloatingButton() {
     floatingBtn.classList.remove('is-visible');
     floatingBtn.classList.add('is-hidden');
+    stopGlowAnimation();
   }
 
   // Hide floating button when over footer
   function hideFloatingButtonOverFooter() {
     floatingBtn.classList.remove('is-visible');
     floatingBtn.classList.add('is-over-footer');
+    stopGlowAnimation();
+  }
+
+  // Start glow animation interval
+  function startGlowAnimation() {
+    // Check if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    // Clear existing interval
+    if (state.glowInterval) {
+      clearInterval(state.glowInterval);
+    }
+
+    // Start new interval with random delay between 8-12 seconds
+    function scheduleNextGlow() {
+      const delay = Math.random() * 4000 + 8000; // 8-12 seconds
+      state.glowInterval = setTimeout(() => {
+        if (floatingBtn.classList.contains('is-visible')) {
+          triggerGlow();
+          scheduleNextGlow(); // Schedule next glow
+        }
+      }, delay);
+    }
+
+    scheduleNextGlow();
+  }
+
+  // Stop glow animation interval
+  function stopGlowAnimation() {
+    if (state.glowInterval) {
+      clearTimeout(state.glowInterval);
+      state.glowInterval = null;
+    }
+    floatingBtn.classList.remove('is-glowing');
+  }
+
+  // Trigger glow animation
+  function triggerGlow() {
+    floatingBtn.classList.add('is-glowing');
+    
+    // Remove glow class after animation completes
+    setTimeout(() => {
+      floatingBtn.classList.remove('is-glowing');
+    }, 800);
   }
 
   // Event listeners
   function setupEventListeners() {
     // Resize listener for screen size changes
     window.addEventListener('resize', detectScreenSize);
+
+    // Listen for changes in reduced motion preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    mediaQuery.addEventListener('change', (e) => {
+      if (e.matches) {
+        // User prefers reduced motion - stop glow animation
+        stopGlowAnimation();
+      } else if (floatingBtn.classList.contains('is-visible')) {
+        // User no longer prefers reduced motion and button is visible - start glow
+        startGlowAnimation();
+      }
+    });
   }
 
   // Initialize observers and event listeners
