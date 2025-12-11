@@ -1,16 +1,27 @@
 @use '../base/variables'as *;
 @use '../base/adaptive'as *;
 @use '../base/mixins'as *;
+@use '../vendors/include-media'as *;
 
 .js-accordion {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 32px;
+    width: 100%;
+
+    @include media ("<tablet") {
+        gap: 24px;
+    }
 
     &-item {
         width: 100%;
 
         &._active {
+            .js-accordion-toggler {
+                color: $blue-brand-500;
+                transition: $animation-speed;
+            }
+
             .accordion-toggler-icon {
                 rotate: 90deg;
                 transition: $animation-speed;
@@ -26,13 +37,15 @@
         width: 100%;
         padding: 0 0 16px 0;
         border: none;
-        border-bottom: $border-width-l solid $neutrals-100;
-        color: $neutrals-100;
+        border-bottom: $border-width-l solid $blue-brand-900;
+        color: $blue-brand-900;
         background-color: transparent;
 
-        @include adaptive-value("font-size", 20, 16, 1);
-        line-height: $text-m-line-height;
+        @include adaptive-value("font-size", 36, 24, 1);
+        line-height: $heading-m-line-height;
         font-weight: $font-weight-medium;
+
+        transition: $animation-speed;
     }
 
     .accordion-toggler-icon {
@@ -46,9 +59,10 @@
         padding-top: 12px;
 
         p {
-            @include adaptive-value("font-size", 18, 16, 1);
+            color: $blue-brand-900;
+            @include adaptive-value("font-size", 24, 18, 1);
             font-weight: $font-weight-medium;
-            line-height: $text-l-line-height;
+            line-height: $heading-xs-line-height;
         }
     }
 }

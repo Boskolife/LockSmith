@@ -4,6 +4,7 @@
 @use 'sass:list';
 @use 'sass:string';
 @use 'sass:math';
+@use 'sass:meta';
 
 //     _            _           _                           _ _
 //    (_)          | |         | |                         | (_)
@@ -420,11 +421,11 @@ $im-no-media-expressions: ('screen',
 /// @return {Number}
 ///
 @function to-number($value) {
-    @if type-of($value)=='number' {
+    @if meta.type-of($value)=='number' {
         @return $value;
     }
 
-    @else if type-of($value) !='string' {
+    @else if meta.type-of($value) !='string' {
         $_: log('Value for `to-number` should be a number or a string.');
     }
 

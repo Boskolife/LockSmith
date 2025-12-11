@@ -43,8 +43,8 @@
                 </label>
               </div>
               <div class="input-group">
-                <label for="email">Location
-                  <input id="email" type="email" placeholder="Email">
+                <label for="location">Location
+                  <input id="location" type="text" placeholder="Location">
                 </label>
                 <label for="service">Service
                   <div class="custom-select" data-select>
@@ -66,14 +66,14 @@
                     <select name="service" id="service" required class="is-hidden"
                       aria-hidden="true">
                       <option value="" disabled selected>Select</option>
-                      <option value="emergency-lockout">Emergency Lockout Service</option>
-                      <option value="lock-repair">Lock Repair</option>
-                      <option value="lock-change">Lock Change</option>
-                      <option value="lock-rekey">Lock Rekey</option>
-                      <option value="lock-installation">Lock Installation</option>
-                      <option value="automotive-emergency">Automotive Emergency Lockout</option>
-                      <option value="commercial-security">Commercial Security Solutions</option>
-                      <option value="door-repair">Door Repair</option>
+                      <option value="Emergency Lockout Service">Emergency Lockout Service</option>
+                      <option value="Lock Repair">Lock Repair</option>
+                      <option value="Lock Change">Lock Change</option>
+                      <option value="Lock Rekey">Lock Rekey</option>
+                      <option value="Lock Installation">Lock Installation</option>
+                      <option value="Automotive Emergency Lockout">Automotive Emergency Lockout</option>
+                      <option value="Commercial Security Solutions">Commercial Security Solutions</option>
+                      <option value="Door Repair">Door Repair</option>
                     </select>
                   </div>
                 </label>
@@ -122,6 +122,7 @@
         </div>
       </div>
     </section>
+    {{> how-it-works-section }}
     <section class="services default-section" id="services">
       <div class="container">
         <h2 class="services_title section-title">We’ve got you covered – pick a service</h2>
@@ -249,7 +250,8 @@
     </section>
     {{> contact-section }}
     {{> promise-section }}
-    {{> how-it-works-section }}
+
+    {{> faq-section }}
     {{> reviews-section}}
   </main>
   {{> footer }}

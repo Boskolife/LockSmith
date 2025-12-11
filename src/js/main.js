@@ -200,8 +200,8 @@ function selectOption(state, index) {
   valueDisplay.textContent = text;
   valueDisplay.classList.remove('placeholder');
 
-  // Update hidden select
-  select.value = value;
+  // Update hidden select with text instead of value
+  select.value = text;
 
   // Update option states
   optionElements.forEach((opt, i) => {
@@ -774,13 +774,13 @@ function handleFormSubmit(form) {
 
     // Basic validation
     if (!data.email || !data.service) {
-      showFormError('Please fill in all required fields.');
+      console.warn('Please fill in all required fields.');
       return;
     }
 
     // Email validation
     if (!isValidEmail(data.email)) {
-      showFormError('Please enter a valid email address.');
+      console.warn('Please enter a valid email address.');
       return;
     }
 
@@ -790,7 +790,7 @@ function handleFormSubmit(form) {
     // Reset form
     form.reset();
   } catch (error) {
-    showFormError(
+    console.error(
       'An error occurred while submitting the form. Please try again.'
     );
   }
@@ -802,35 +802,6 @@ function handleFormSubmit(form) {
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
-}
-
-/**
- * Show form error message
- */
-function showFormError(message) {
-  if (!message) {
-    return;
-  }
-
-  const errorDiv = document.createElement('div');
-  errorDiv.className = 'form-error';
-  errorDiv.textContent = message;
-
-  // Add to form
-  const form = document.querySelector('form');
-  if (form) {
-    form.appendChild(errorDiv);
-  } else {
-    // Fallback: add to body
-    document.body.appendChild(errorDiv);
-  }
-
-  // Remove after 5 seconds
-  window.setTimeout(() => {
-    if (errorDiv.parentNode) {
-      errorDiv.parentNode.removeChild(errorDiv);
-    }
-  }, 5000);
 }
 
 /**
@@ -1071,7 +1042,6 @@ function initFloatingCTA() {
     isVisible: false,
     isOverFooter: false,
     isSmallScreen: window.innerWidth < 320,
-    glowInterval: null,
   };
 
   // Intersection Observer for hero section
@@ -1140,67 +1110,21 @@ function initFloatingCTA() {
   function showFloatingButton() {
     floatingBtn.classList.add('is-visible');
     floatingBtn.classList.remove('is-hidden', 'is-over-footer');
-    startGlowAnimation();
   }
 
   // Hide floating button
   function hideFloatingButton() {
     floatingBtn.classList.remove('is-visible');
     floatingBtn.classList.add('is-hidden');
-    stopGlowAnimation();
   }
 
   // Hide floating button when over footer
   function hideFloatingButtonOverFooter() {
     floatingBtn.classList.remove('is-visible');
     floatingBtn.classList.add('is-over-footer');
-    stopGlowAnimation();
   }
 
-  // Start glow animation interval
-  function startGlowAnimation() {
-    // Check if user prefers reduced motion
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
 
-    // Clear existing interval
-    if (state.glowInterval) {
-      clearInterval(state.glowInterval);
-    }
-
-    // Start new interval with random delay between 8-12 seconds
-    function scheduleNextGlow() {
-      const delay = Math.random() * 4000 + 8000; // 8-12 seconds
-      state.glowInterval = setTimeout(() => {
-        if (floatingBtn.classList.contains('is-visible')) {
-          triggerGlow();
-          scheduleNextGlow(); // Schedule next glow
-        }
-      }, delay);
-    }
-
-    scheduleNextGlow();
-  }
-
-  // Stop glow animation interval
-  function stopGlowAnimation() {
-    if (state.glowInterval) {
-      clearTimeout(state.glowInterval);
-      state.glowInterval = null;
-    }
-    floatingBtn.classList.remove('is-glowing');
-  }
-
-  // Trigger glow animation
-  function triggerGlow() {
-    floatingBtn.classList.add('is-glowing');
-    
-    // Remove glow class after animation completes
-    setTimeout(() => {
-      floatingBtn.classList.remove('is-glowing');
-    }, 800);
-  }
 
   // Event listeners
   function setupEventListeners() {
@@ -1209,14 +1133,9 @@ function initFloatingCTA() {
 
     // Listen for changes in reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    mediaQuery.addEventListener('change', (e) => {
-      if (e.matches) {
-        // User prefers reduced motion - stop glow animation
-        stopGlowAnimation();
-      } else if (floatingBtn.classList.contains('is-visible')) {
-        // User no longer prefers reduced motion and button is visible - start glow
-        startGlowAnimation();
-      }
+    mediaQuery.addEventListener('change', e => {
+      // User prefers reduced motion - no glow animation needed
+      // Animation is handled by CSS prefers-reduced-motion
     });
   }
 
@@ -1249,6 +1168,7 @@ function init() {
   initAccessibility();
   initHeaderScroll();
   initFloatingCTA();
+  
 
   // Make functions globally available for debugging
   window.LockSmith = {
@@ -1281,6 +1201,7 @@ if (document.readyState === 'loading') {
 } else {
   init();
 }
+
 
 // Export functions for potential module usage
 if (typeof window !== 'undefined' && window.module && window.module.exports) {

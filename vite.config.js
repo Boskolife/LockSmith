@@ -47,7 +47,7 @@ export default defineConfig({
     },
     outDir: '../dist/',
     emptyOutDir: true,
-    minify: true,
+    minify: false,
   },
   server: {
     port: 3000,
